@@ -1,0 +1,10 @@
+<suite name="New User" verbose = "1">
+    <test name="invalidEmail">
+        <classes>
+            <parameter name="username" value="auto_user"></parameter>
+            <parameter name="email" value="invalidemail.com"></parameter>
+            <parameter name="password" value="auto_pass"></parameter>
+            <class name="tests.invalidEmail"></class>
+        </classes>
+    </test>
+</suite>
