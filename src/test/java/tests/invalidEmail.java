@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import pages.HeaderPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -18,7 +19,7 @@ public class invalidEmail {
     WebDriver driver;
 
     @BeforeMethod
-    public void InitializeDriver() {
+    public void initDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -26,8 +27,14 @@ public class invalidEmail {
 
     }
 
-    @Test
-    public void invalidEmail() {
+    @DataProvider(name = "invalidEmail")
+    public Object[][] invalidEmailInput() {
+        return new Object[][]{
+                {"auto_user", "invalidemail.com", "auto_pass"}
+        };
+    }
+    @Test(dataProvider = "invalidEmail")
+    public void invalidEmail(String username, String email, String password) {
 
         /*
         1. Go to Homepage
@@ -37,13 +44,14 @@ public class invalidEmail {
         5. Verify Register button is visible
         6. Click Register button
         7. Verify Register URL
-        8. Verify Sign in button is visible
-        9. Populate valid username
-        10. Populate valid email
-        11. Populate valid password
-        12. Populate mismatching password
-        13. Confirm error message for invalid email populated
-        14. Click Sign in button
+        8. Verify visibility of registration form
+        9. Verify Sign in button is visible
+        10. Populate valid username
+        11. Populate invalid email
+        12. Populate valid password
+        13. Populate valid matching password
+        14. Confirm error message for invalid email populated
+        15. Click Sign in button
         */
 
         System.out.println("1. Go to homepage");
@@ -61,7 +69,7 @@ public class invalidEmail {
         // Login url is inside the LoginPage as a variable and by calling it we verify the correct URL
         System.out.println("3. Check correct login URL");
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.verifyURL();
+        loginPage.verifyURL(loginPage.LOGIN_URL);
 
         // LoginPage has already been created, so we just use the method to call visibilityOfSignInForm
         System.out.println("4. Verify visibility of Sign In Form");
@@ -75,30 +83,32 @@ public class invalidEmail {
 
         System.out.println("7. Verify Register URL link");
         RegistrationPage registrationPage = new RegistrationPage(driver);
+        registrationPage.verifyURL(registrationPage.REG_URL);
+
+        System.out.println("8. Verify visibility of register form");
         registrationPage.visibilityOfRegForm();
 
-        System.out.println("8. Verify 'Sign in' button is visible");
+        System.out.println("9. Verify 'Sign in' button is visible");
         registrationPage.visibilityOfSignInButton();
 
-        System.out.println("8. Populate valid username");
-        registrationPage.populateUsername("auto_user");
+        System.out.println("10. Populate valid username");
+        registrationPage.populateUsername(username);
 
-        System.out.println("9. Populate invalid email");
-        registrationPage.populateEmail("invalidmail.com");
+        System.out.println("11. Populate invalid email");
+        registrationPage.populateEmail(email);
 
-        System.out.println("10. Populate valid password");
-        registrationPage.populatePassword("auto_pass");
+        System.out.println("12. Populate valid password");
+        registrationPage.populatePassword(password);
 
-        System.out.println("11. Populate valid password");
-        registrationPage.populateConfirmPass("auto_pass");
+        System.out.println("13. Populate valid matching password");
+        registrationPage.populateConfirmPass(password);
 
-        System.out.println("12. Confirm error message for invalid email populated");
+        System.out.println("14. Confirm error message for invalid email populated");
         registrationPage.visibilityOfSignInButton();
 
-        System.out.println("13. Click Sign in Button");
+        System.out.println("15. Click Sign in Button");
         registrationPage.invalidEmailMessage();
     }
-
 
     @AfterMethod
     public void cleanup() {

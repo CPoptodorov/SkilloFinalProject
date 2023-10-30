@@ -9,11 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage{
 
-    private String REG_URL = "http://training.skillo-bg.com:4200/users/register";
-    private WebDriver driver;
-    private WebDriverWait wait;
+    public String REG_URL = "http://training.skillo-bg.com:4200/users/register";
 
     @FindBy(css = ".form-container")
     private WebElement registerForm;
@@ -36,34 +34,27 @@ public class RegistrationPage {
     @FindBy (xpath = "//span[contains(text(), 'Email invalid!')]")
     private WebElement invalidEmailMessage;
 
-    public RegistrationPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this); //because of this class we can use @FindBy
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
+    @FindBy (xpath = "//span[contains(text(), ' Passwords do not match! ')]")
+    private WebElement mismatchPassword;
 
-    public void clickElement(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+    public RegistrationPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
     }
     public void visibilityOfRegForm() {
         wait.until(ExpectedConditions.visibilityOf(registerForm));
     }
     public void populateUsername(String username) {
-        wait.until(ExpectedConditions.visibilityOf(usernameField));
-        usernameField.sendKeys(username);
+        sendText(usernameField, username);
     }
     public void populateEmail(String email) {
-        wait.until(ExpectedConditions.visibilityOf(emailField));
-        emailField.sendKeys(email);
+        sendText(emailField, email);;
     }
     public void populatePassword(String password) {
-        wait.until(ExpectedConditions.visibilityOf(passwordField));
-        passwordField.sendKeys(password);
+        sendText(passwordField, password);
     }
     public void populateConfirmPass(String confirmPassword) {
-        wait.until(ExpectedConditions.visibilityOf(confirmPasswordField));
-        confirmPasswordField.sendKeys(confirmPassword);
+        sendText(confirmPasswordField, confirmPassword);
     }
     public void invalidEmailMessage(){
         wait.until(ExpectedConditions.visibilityOf(invalidEmailMessage));
@@ -73,5 +64,8 @@ public class RegistrationPage {
     }
     public void clickSignInButton(){
         clickElement(signInButton);
+    }
+    public void passMismatchError() {
+        wait.until(ExpectedConditions.visibilityOf(mismatchPassword));
     }
 }

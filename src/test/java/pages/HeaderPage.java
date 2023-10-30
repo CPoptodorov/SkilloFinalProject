@@ -10,10 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 
-public class HeaderPage {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class HeaderPage extends BasePage{
 
     @FindBy(id = "nav-link-home")
     private WebElement homeLink;
@@ -34,14 +31,9 @@ public class HeaderPage {
     private WebElement followUser;
 
     public HeaderPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
 
-    public void clickElement(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
     }
 
     public void goToHome() {
