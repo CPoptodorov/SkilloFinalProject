@@ -31,7 +31,7 @@ public class profileInfoEdit {
     @DataProvider(name = "loginCredentials")
     public Object[][] loginCredentials() {
         return new Object[][]{
-                {"Constantin_user", "Test1234", "GGGG31321"}
+                {"Constantin_user", "Test1234", "Test1234"}
         };
     }
 
@@ -79,11 +79,29 @@ public class profileInfoEdit {
         System.out.println("12. Click Public info field");
         profilePage.clickPublicInfo();
 
-        System.out.println("13. Edit public info");
+        System.out.println("13. Clean profile info");
+        profilePage.cleanProfileInfo();
+
+        System.out.println("14. Click Edit public info");
         profilePage.editProfileInfo(profileInfo);
 
-        System.out.println("14. Press Save Button");
+        System.out.println("15. Verify visibility of SaveButton");
+        profilePage.visibilityOfSaveButton();
+
+        System.out.println("16. Click Save Button");
         profilePage.pressSaveButton();
+
+        System.out.println("17. Confirm Toast message is visible");
+        profilePage.visibilityOfToastMsg();
+
+        System.out.println("18. Click edit profile");
+        profilePage.clickEditProfile();
+
+        System.out.println("19. Click Public info field");
+        profilePage.clickPublicInfo();
+
+        System.out.println("20. Verify Page information text");
+        Assert.assertEquals(profileInfo, "Test1234", "Incorrect Profile info");
     }
 
     @AfterMethod

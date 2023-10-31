@@ -18,10 +18,13 @@ public class ProfilePage extends BasePage{
     private WebElement modifyForm;
 
     @FindBy(css = "textarea[formcontrolname='publicInfo']")
-    private WebElement publicInfo;
+    private WebElement profileInfo;
 
-    @FindBy(css = ".offset-4 > .btn-primary")
+    @FindBy(css = "button[type='submit']")
     private WebElement saveButton;
+
+    @FindBy(id = "toast-container")
+    private WebElement toastConfirm;
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -39,13 +42,22 @@ public class ProfilePage extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(modifyForm));
     }
     public void clickPublicInfo() {
-        clickElement(publicInfo);
-        publicInfo.clear();
+        clickElement(profileInfo);
+    }
+    public void cleanProfileInfo() {
+        profileInfo.clear();
     }
     public void editProfileInfo(String profileInfo) {
-        sendText(publicInfo, profileInfo);
+        sendText(this.profileInfo, profileInfo);
+    }
+    public void visibilityOfSaveButton() {
+        wait.until(ExpectedConditions.visibilityOf(saveButton));
     }
     public void pressSaveButton(){
         clickElement(saveButton);
     }
+    public void visibilityOfToastMsg() {
+        wait.until(ExpectedConditions.visibilityOf(toastConfirm));
+    }
+
 }
