@@ -24,6 +24,7 @@ public class passwordMismatch {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
     }
 
     @DataProvider(name = "passwordMismatch")

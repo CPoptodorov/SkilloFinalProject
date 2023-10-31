@@ -47,6 +47,10 @@ public class LoginPage extends BasePage {
     public void populatePassword(String password) {
         sendText(passwordField, password);
     }
+    public void populateLogin(String username, String password) {
+        populateUsername(username);
+        populatePassword(password);
+    }
     public void clickSignInButton() {
         clickElement(signInButton);
     }

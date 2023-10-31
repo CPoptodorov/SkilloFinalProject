@@ -57,11 +57,11 @@ public class HeaderPage extends BasePage{
     public void visibilityOfNewPost() {
         wait.until(ExpectedConditions.visibilityOf(newPostLink));
     }
-    public void clickSearchBar() {
-        wait.until(ExpectedConditions.visibilityOf(searchBar));
-        clickElement(searchBar);
-        searchBar.sendKeys("pesho123456789");
-    }
+//    public void clickSearchBar() {
+//        wait.until(ExpectedConditions.visibilityOf(searchBar));
+//        clickElement(searchBar);
+
+ //   }
     public void clickFollowUser() {
         wait.until(ExpectedConditions.visibilityOf(followUser));
         clickElement(followUser);
