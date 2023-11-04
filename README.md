@@ -15,4 +15,5 @@ Test Description:
 4) Search bar button not working.
 - User is using search bar and pressing the search button. Search button does not work and the test will always fail and will make screenshots. If functionality of the seach bar button is fixed test will pass normally
 - For the test an existing user is being used for verification of visibility - test.user-1234
-5)
+5) Unregistered User Liking posts
+- A non registered user is selecting a post and attempting to click the like button
