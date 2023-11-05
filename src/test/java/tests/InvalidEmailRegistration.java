@@ -30,20 +30,14 @@ public class InvalidEmailRegistration extends BaseTest{
         HomePage homePage = new HomePage(driver);
         homePage.navigateToHomeURL();
 
-        // Since the login button is part of the HeaderPage we want to use that method
-        // To use is we create a new object from type HeaderPage, and apply the driver within the page
-        // The driver has already been defined in this page
         System.out.println("2 Login button click");
         HeaderPage headerPage = new HeaderPage(driver);
         headerPage.goToLogin();
 
-        // To use is we create a new object from type LoginPage, and apply the driver within the page
-        // Login url is inside the LoginPage as a variable and by calling it we verify the correct URL
         System.out.println("3. Check correct login URL");
         LoginPage loginPage = new LoginPage(driver);
         loginPage.verifyURL(loginPage.LOGIN_URL);
 
-        // LoginPage has already been created, so we just use the method to call visibilityOfSignInForm
         System.out.println("4. Verify visibility of Sign In Form");
         loginPage.visibilityOfSignInForm();
 
