@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
@@ -34,10 +31,14 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".text-center.form-container")
     private WebElement singInForm;
 
+    @FindBy(css = ".toast-warning")
+    private WebElement toastMessage;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
     public void visibilityOfSignInForm() {
         wait.until(ExpectedConditions.visibilityOf(singInForm));
     }
@@ -59,5 +60,8 @@ public class LoginPage extends BasePage {
     }
     public void visibilityOfRegisterButton() {
         wait.until(ExpectedConditions.visibilityOf(registerLink));
+    }
+    public void visibility0fToastMessage() {
+        wait.until(ExpectedConditions.visibilityOf(toastMessage));
     }
 }

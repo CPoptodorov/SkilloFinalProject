@@ -1,32 +1,21 @@
 package tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import pages.HeaderPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class invalidEmail {
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-
-    }
+public class InvalidEmailRegistration extends BaseTest{
 
     @DataProvider(name = "invalidEmail")
     public Object[][] invalidEmailInput() {
@@ -35,25 +24,7 @@ public class invalidEmail {
         };
     }
     @Test(dataProvider = "invalidEmail")
-    public void invalidEmail(String username, String email, String password) {
-
-        /*
-        1. Go to Homepage
-        2. Login button click
-        3. Check correct login URL
-        4. Check if Sign in form is visible
-        5. Verify Register button is visible
-        6. Click Register button
-        7. Verify Register URL
-        8. Verify visibility of registration form
-        9. Verify Sign in button is visible
-        10. Populate valid username
-        11. Populate invalid email
-        12. Populate valid password
-        13. Populate valid matching password
-        14. Confirm error message for invalid email populated
-        15. Click Sign in button
-        */
+    public void invalidEmailRegistration(String username, String email, String password) {
 
         System.out.println("1. Go to homepage");
         HomePage homePage = new HomePage(driver);
@@ -109,10 +80,5 @@ public class invalidEmail {
 
         System.out.println("15. Click Sign in Button");
         registrationPage.invalidEmailMessage();
-    }
-
-    @AfterMethod
-    public void cleanup() {
-        driver.close();
     }
 }

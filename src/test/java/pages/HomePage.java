@@ -21,6 +21,5 @@ public class HomePage {
 
     public void navigateToHomeURL() {
         driver.get(HOME_URL);
-
     }
 }

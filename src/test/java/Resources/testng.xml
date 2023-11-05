@@ -1,8 +1,11 @@
 <suite name="tests" verbose="1">
-    <test name="Register Test">
+    <test name="Tests">
         <classes>
-            <class name="tests.invalidEmail"></class>
-            <class name="tests.passwordMismatch"></class>
+            <class name="tests.InvalidEmailRegistration"></class>
+            <class name="tests.PasswordMismatchRegistration"></class>
+            <class name="tests.UserProfileInfoEdit"></class>
+            <class name="tests.UnregisteredUserLikingPosts"></class>
+            <class name="tests.SearchButtonNotWorking"></class>
         </classes>
     </test>
 </suite>

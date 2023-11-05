@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class ProfilePage extends BasePage{
 
     @FindBy(css = ".profile-user-settings > h2")
@@ -25,6 +27,12 @@ public class ProfilePage extends BasePage{
 
     @FindBy(id = "toast-container")
     private WebElement toastConfirm;
+
+    @FindBy(xpath = "//li[contains(text(), 'posts')]/strong")
+    private WebElement postsCount;
+
+    @FindBy(css = "app-posts")
+    List<WebElement> existingPosts;
 
     public ProfilePage(WebDriver driver) {
         super(driver);

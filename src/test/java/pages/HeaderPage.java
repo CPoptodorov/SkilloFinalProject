@@ -5,12 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 
-public class HeaderPage extends BasePage{
+public class HeaderPage extends BasePage {
 
     @FindBy(id = "nav-link-home")
     private WebElement homeLink;
@@ -25,45 +22,42 @@ public class HeaderPage extends BasePage{
     private WebElement newPostLink;
 
     @FindBy(id = "search-bar")
-    private WebElement searchBar;
+    private WebElement searchBarField;
 
-    @FindBy(xpath = "//a[text()='pesho123456789']")
-    private WebElement followUser;
+    @FindBy(css = ".fa-search")
+    private WebElement searchBarButton;
 
     public HeaderPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-
     }
 
-    public void goToHome() {
-        clickElement(homeLink);
-    }
-    public void goToLogin() {
-        clickElement(loginLink);
-    }
     public void visibilityOfLoginLink() {
         wait.until(ExpectedConditions.visibilityOf(loginLink));
     }
+
+    public void goToLogin() {
+        clickElement(loginLink);
+    }
+
     public void goToProfileLink() {
         clickElement(profileLink);
     }
+
     public void visibilityOfProfileLink() {
         wait.until(ExpectedConditions.visibilityOf(profileLink));
     }
-    public void goToPostLink() {
-        clickElement(newPostLink);
-    }
-    public void visibilityOfNewPost() {
-        wait.until(ExpectedConditions.visibilityOf(newPostLink));
-    }
-//    public void clickSearchBar() {
-//        wait.until(ExpectedConditions.visibilityOf(searchBar));
-//        clickElement(searchBar);
 
- //   }
-    public void clickFollowUser() {
-        wait.until(ExpectedConditions.visibilityOf(followUser));
-        clickElement(followUser);
+    public void clickSearchBar() {
+        wait.until(ExpectedConditions.visibilityOf(searchBarField));
+        clickElement(searchBarField);
+    }
+
+    public void populateSearchBar(String searchBar) {
+        sendText(searchBarField, searchBar);
+    }
+
+    public void clickSearchBarButton() {
+        clickElement(searchBarButton);
     }
 }

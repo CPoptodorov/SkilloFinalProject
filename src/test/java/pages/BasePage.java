@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 
 public class BasePage {
@@ -26,7 +27,6 @@ public class BasePage {
     public void verifyURL(String url){
         wait.until(ExpectedConditions.urlToBe(url));
     }
-
     //Method for waiting of an element to be clickable and clicking of the element to avoid redundant code for every element click e.g. clickElement(signInButton);
     public void clickElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -37,4 +37,8 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(text);
     }
+
+  //  public void uploadFile (File file) {
+   //     fileInput.send
 }
+

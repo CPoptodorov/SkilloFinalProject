@@ -1,11 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.HeaderPage;
@@ -13,25 +8,13 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.ProfilePage;
 
-import java.time.Duration;
 
-public class profileInfoEdit {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void initDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-    }
+public class UserProfileInfoEdit extends BaseTest{
 
     @DataProvider(name = "loginCredentials")
     public Object[][] loginCredentials() {
         return new Object[][]{
-                {"Constantin_user", "Test1234", "Test1234"}
+                {"Constantin_user", "Test1234", "222222"}
         };
     }
 
@@ -101,12 +84,7 @@ public class profileInfoEdit {
         profilePage.clickPublicInfo();
 
         System.out.println("20. Verify Page information text");
-        Assert.assertEquals(profileInfo, "Test1234", "Incorrect Profile info");
-    }
-
-    @AfterMethod
-    public void cleanup(){
-        driver.close();
+        Assert.assertEquals(profileInfo, "222222", "Incorrect Profile info");
     }
 }
 

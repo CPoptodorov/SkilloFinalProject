@@ -1,10 +1,6 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.HeaderPage;
@@ -12,20 +8,8 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
 
-import java.time.Duration;
 
-public class passwordMismatch {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void InitDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
-    }
+public class PasswordMismatchRegistration extends BaseTest{
 
     @DataProvider(name = "passwordMismatch")
     public Object[][] passwordMismatchInput() {
@@ -35,25 +19,7 @@ public class passwordMismatch {
     }
 
     @Test(dataProvider = "passwordMismatch")
-    public void passwordMismatch(String username, String email, String password, String confirmPassword) {
-
-        /*
-        1. Go to Homepage
-        2. Login button click
-        3. Check correct login URL
-        4. Check if Sign in form is visible
-        5. Verify Register button is visible
-        6. Click Register button
-        7. Verify Register URL
-        8. Verify visibility of registration form
-        9. Verify Sign in button is visible
-        10. Populate valid username
-        11. Populate valid email
-        12. Populate valid password
-        13. Populate mismatching password
-        14. Confirm error message for password mismatch
-        15. Click Sign in button
-        */
+    public void passwordMismatchRegistration(String username, String email, String password, String confirmPassword) {
 
 
         System.out.println("1. Go to Homepage");
@@ -105,10 +71,5 @@ public class passwordMismatch {
         System.out.println("15. Click Sign in button");
         registrationPage.clickSignInButton();
 
-    }
-
-    @AfterMethod
-    public void cleanUp() {
-        driver.close();
     }
 }
