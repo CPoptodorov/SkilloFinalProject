@@ -12,3 +12,8 @@ Test Description:
 - User is using two different inputs for password and confirm password when filling registration form
 3) Editing profile information.
 - User is populating the information inside the profile page
+4) Search bar button not working.
+- User is using search bar and pressing the search button. Search button does not work and the test will always fail and will make screenshots. If functionality of the seach bar button is fixed test will pass normally
+- For the test an existing user is being used for verification of visibility - test.user-1234
+5) Unregistered User Liking posts
+- A non registered user is selecting a post and attempting to click the like button
